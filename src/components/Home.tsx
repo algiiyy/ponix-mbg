@@ -1,7 +1,6 @@
 import React from 'react';
-import foodTray from '../assets/images/food-tray.jpg';
-
 export default function Home() {
+  const foodTray = "/food-tray.jpg";
   return (
     <div className="space-y-8">
       {/* Header Card */}

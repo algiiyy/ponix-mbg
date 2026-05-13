@@ -1,7 +1,6 @@
 import React from 'react';
-import truckImg from '../assets/images/truck-distribution.png';
-
 export default function StatusMBG() {
+  const truckImg = "/truck.png";
   return (
     <div className="space-y-8 pb-32 relative overflow-visible">
       <h1 className="text-3xl font-display font-bold text-blue-500 text-right pr-2">
@@ -53,7 +52,7 @@ export default function StatusMBG() {
         
         <div className="absolute left-6 bottom-[-40px] bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-white/80 text-[10px] shadow-xl max-w-[170px] z-20">
           <div className="font-bold text-slate-900 border-b border-slate-100 pb-1.5 mb-1.5 tracking-tight">BADAN GIZI NASIONAL</div>
-          <div className="text-slate-500 font-medium leading-tight">Layanan Pelenuhan Gizi Sekolah Strategis</div>
+          <div className="text-slate-500 font-medium leading-tight">Layanan Pemenuhan Gizi Sekolah Strategis</div>
         </div>
       </div>
     </div>
