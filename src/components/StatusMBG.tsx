@@ -1,6 +1,6 @@
 import React from 'react';
 export default function StatusMBG() {
-  const truckImg = "/truck.png";
+  const truckImg = "https://images.unsplash.com/photo-1586704235551-30b3a1663f84?auto=format&fit=crop&q=80&w=600";
   return (
     <div className="space-y-8 pb-32 relative overflow-visible">
       <h1 className="text-3xl font-display font-bold text-blue-500 text-right pr-2">
@@ -39,22 +39,7 @@ export default function StatusMBG() {
         </div>
       </div>
 
-      {/* Delivery Truck Image - Positioned to 'nongol dikit' (popping out) */}
-      <div className="relative mt-4">
-        <div className="absolute inset-0 bg-blue-400 blur-3xl opacity-10 -z-10 translate-y-10 scale-150"></div>
-        <div className="relative -left-12 -mb-20 pointer-events-none">
-          <img 
-            src={truckImg} 
-            alt="Delivery Truck"
-            className="w-full max-w-[450px] object-contain drop-shadow-2xl brightness-105"
-          />
-        </div>
-        
-        <div className="absolute left-6 bottom-[-40px] bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-white/80 text-[10px] shadow-xl max-w-[170px] z-20">
-          <div className="font-bold text-slate-900 border-b border-slate-100 pb-1.5 mb-1.5 tracking-tight">BADAN GIZI NASIONAL</div>
-          <div className="text-slate-500 font-medium leading-tight">Layanan Pemenuhan Gizi Sekolah Strategis</div>
-        </div>
-      </div>
+      {/* Delivery Truck Image Removed */}
     </div>
   );
 }

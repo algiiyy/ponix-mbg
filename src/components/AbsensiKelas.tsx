@@ -38,15 +38,33 @@ const ClassCard: React.FC<ClassCardProps> = ({ name, hadir, ambil, status }) => 
 
 export default function AbsensiKelas() {
   const [search, setSearch] = useState('');
+  const [selectedGrade, setSelectedGrade] = useState<'X' | 'XI' | 'XII'>('XI');
 
-  const classes: ClassCardProps[] = [
-    { name: 'XIF1', hadir: 33, ambil: 33, status: 'SUDAH DI KEMBALIKAN' },
-    { name: 'XIF2', hadir: 34, ambil: 34, status: 'BELUM DI KEMBALIKAN' },
-    { name: 'XIF3', hadir: 32, ambil: 32, status: 'BELUM DI AMBIL' },
-    { name: 'XIF4', hadir: 34, ambil: 34, status: 'SUDAH DI KEMBALIKAN' },
-    { name: 'XIF5', hadir: 33, ambil: 33, status: 'SUDAH DI KEMBALIKAN' },
-    { name: 'XIF6', hadir: 34, ambil: 34, status: 'BELUM DI KEMBALIKAN' },
-  ];
+  // Helper to generate random class data
+  const generateClasses = (prefix: string, count: number, min: number = 25): ClassCardProps[] => {
+    const statuses: ClassCardProps['status'][] = ['SUDAH DI KEMBALIKAN', 'BELUM DI KEMBALIKAN', 'BELUM DI AMBIL'];
+    return Array.from({ length: count }, (_, i) => {
+      const hadir = Math.floor(Math.random() * (35 - min + 1)) + min; // min to 35
+      const status = statuses[Math.floor(Math.random() * statuses.length)];
+      const ambil = status === 'BELUM DI AMBIL' ? 0 : hadir;
+      
+      return {
+        name: `${prefix}${i + 1}`,
+        hadir,
+        ambil,
+        status
+      };
+    });
+  };
+
+  const allSelectedClasses = React.useMemo(() => {
+    switch (selectedGrade) {
+      case 'X': return generateClasses('XE', 12, 31);
+      case 'XI': return generateClasses('XIF', 12, 25);
+      case 'XII': return generateClasses('XIIF', 12, 25);
+      default: return [];
+    }
+  }, [selectedGrade]);
 
   return (
     <div className="space-y-6">
@@ -71,20 +89,39 @@ export default function AbsensiKelas() {
       </div>
 
       <div className="space-y-4">
+        {/* Grade Tabs Selector */}
+        <div className="flex gap-2 mb-2">
+          {['X', 'XI', 'XII'].map((g) => (
+            <button
+              key={g}
+              onClick={() => setSelectedGrade(g as any)}
+              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 ${
+                selectedGrade === g 
+                  ? 'bg-blue-500 text-white shadow-lg shadow-blue-200 scale-105' 
+                  : 'bg-white/60 text-slate-400 hover:bg-white/80'
+              }`}
+            >
+              KELAS {g}
+            </button>
+          ))}
+        </div>
+
         <h2 className="text-xl font-bold text-blue-500 font-display border-b-2 border-blue-100 inline-block pb-1">
-          KELAS XI
+          KELAS {selectedGrade}
         </h2>
         
         <div className="grid grid-cols-2 gap-3">
-          {classes.map((cls) => (
-            <ClassCard 
-              key={cls.name} 
-              name={cls.name}
-              hadir={cls.hadir}
-              ambil={cls.ambil}
-              status={cls.status}
-            />
-          ))}
+          {allSelectedClasses
+            .filter((cls) => cls.name.toLowerCase().includes(search.toLowerCase()))
+            .map((cls) => (
+              <ClassCard 
+                key={cls.name} 
+                name={cls.name}
+                hadir={cls.hadir}
+                ambil={cls.ambil}
+                status={cls.status}
+              />
+            ))}
         </div>
       </div>
     </div>

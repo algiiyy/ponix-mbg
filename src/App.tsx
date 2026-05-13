@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Home as HomeIcon, Truck, Target } from 'lucide-react';
+import { Home as HomeIcon, Truck, Target, Calculator } from 'lucide-react';
 import Home from './components/Home';
 import StatusMBG from './components/StatusMBG';
 import AbsensiKelas from './components/AbsensiKelas';
+import KalkulatorGizi from './components/KalkulatorGizi';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'home' | 'status' | 'absensi'>('home');
+  const [activeTab, setActiveTab] = useState<'home' | 'status' | 'absensi' | 'kalkulator'>('home');
 
   const renderPage = () => {
     switch (activeTab) {
@@ -16,6 +17,8 @@ export default function App() {
         return <StatusMBG key="status" />;
       case 'absensi':
         return <AbsensiKelas key="absensi" />;
+      case 'kalkulator':
+        return <KalkulatorGizi key="kalkulator" />;
       default:
         return <Home key="home" />;
     }
@@ -72,6 +75,16 @@ export default function App() {
           id="nav-absensi"
         >
           <Target size={26} />
+        </button>
+
+        <button
+          onClick={() => setActiveTab('kalkulator')}
+          className={`p-3 transition-all duration-300 rounded-2xl ${
+            activeTab === 'kalkulator' ? 'text-blue-600 bg-blue-50 shadow-sm' : 'text-slate-500 hover:text-blue-400'
+          }`}
+          id="nav-kalkulator"
+        >
+          <Calculator size={26} />
         </button>
       </nav>
     </div>
