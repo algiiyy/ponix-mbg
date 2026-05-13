@@ -1,5 +1,5 @@
 import React from 'react';
-import truckImg from '../assets/images/jadwal.png';
+import truckImg from '../assets/images/truck-distribution.png';
 
 export default function StatusMBG() {
   return (

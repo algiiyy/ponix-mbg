@@ -1,5 +1,5 @@
 import React from 'react';
-import foodTray from '../assets/images/regenerated_image_1778590978659.jpg';
+import foodTray from '../assets/images/food-tray.jpg';
 
 export default function Home() {
   return (
